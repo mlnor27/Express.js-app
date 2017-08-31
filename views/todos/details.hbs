@@ -1,0 +1,10 @@
+
+{{#if tdo}}
+    <h2 class="page-header">"{{tdo.title}}" details</h2
+    <ul class="list-group">
+    <li class="list-group-item"><strong>Description : </strong>{{ tdo.description }}</li>
+    <li class="list-group-item"><strong>Priority : </strong>{{ tdo.priority }}</li>
+    <li class="list-group-item"><strong>Due date : </strong>{{ formatDate tdo.due_date }}</li>
+    <li class="list-group-item"><strong>Creation date : </strong>{{ formatDate tdo.creation_date }}</li>
+    </ul>
+{{/if}}

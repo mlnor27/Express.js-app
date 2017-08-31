@@ -1,0 +1,43 @@
+<h2 class="page-header">{{#if todo}} Edit "{{ todo.title }}" {{else}} Create a Todo {{/if}}</h2>
+{{#if errors}}
+  {{#each errors}}
+    <div class="alert alert-danger">
+      {{msg}}
+    </div>
+  {{/each}}
+{{/if}}
+<form method="post" action="{{#if todo}}{{ todo._id }}{{else}}create{{/if}}">
+<div class="form-group">
+    <label for="txt_name">Title</label>
+    <input type="text" 
+           class="form-control" 
+           id="txt_name" 
+           aria-describedby="emailHelp"
+           placeholder="Enter title"
+           name="title" 
+           value="{{#if todo}}{{todo.title}}{{/if}}"
+    required>
+  </div>
+  <div class="form-group">
+    <label for="txt_username">Description</label>
+    <textarea class="form-control" 
+              id="txt_username" 
+              aria-describedby="emailHelp" 
+              placeholder="Enter description" 
+              name="description" required>{{#if todo}}{{todo.description}}{{/if}}</textarea>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Priority</label>
+    <select name="priority" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+        <option {{#if todo}} {{#if (eq todo.priority 'low')}} selected {{/if}} {{ else }} selected {{/if}}  value="low">Low</option>
+        <option {{#if todo}} {{#if (eq todo.priority 'medium')}} selected {{/if}} {{/if}} value="medium">Medium</option>
+        <option {{#if todo}} {{#if (eq todo.priority 'high')}} selected {{/if}} {{/if}} value="high">High</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="datetimepicker">Due date</label>
+    <input type="text" name="dueDate" class="form-control" id="datetimepicker" {{#if todo}} value="{{formatDate todo.due_date}}" {{/if}} required>
+  </div>
+
+  <button type="submit" class="btn btn-primary">{{#if todo}}Edit{{else}}Create{{/if}}</button>
+</form>

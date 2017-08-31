@@ -1,0 +1,45 @@
+<h2 class="page-header">{{title}}</h1>
+<p>Welcome to {{title}}</p>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>priority</th>
+      <th>Due date</th>
+      <th>Creation date</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+   {{#if todos}}
+        {{#each todos}}
+         <tr>
+            <th scope="row">{{ title }}</th>
+            <td>{{ description }}</td>
+            <td>{{ priority }}</td>
+            <td>{{ formatDate due_date }}</td>
+            <td>{{ formatDate creation_date }}</td>
+            <td colspan="2">
+              <a href="/todo/details/{{ _id }}" class="btn btn-secondary">Afficher</a>
+              <a href="/todo/edit/{{_id}}" class="btn btn-info">Modifier</a>
+              <a href="/todo/delete/{{ _id }}" class="btn btn-danger">Supprimer</a>
+            </td>
+         </tr>
+        {{/each}} 
+    {{else}}
+        <tr>
+            <td colspan="5" class="text-center">Nothing to do</td>
+        </tr>
+    {{/if}}
+   
+  </tbody>
+</table>
+
+
+
